@@ -42,6 +42,8 @@ function init() {
         var id_list = data.names
         console.log(id_list);
         console.log(id_list[0]);
+
+        console.log(data.samples[0].sample_values);
     
         d3.select("#selDataset").selectAll("option")
             .data(id_list)
@@ -58,6 +60,43 @@ function init() {
         var li5 = d3.select("#sample-metadata").append("li").text("Location: " + data.metadata[0].location)
         var li6 = d3.select("#sample-metadata").append("li").text("Bbtype: " + data.metadata[0].bbtype)
         var li7 = d3.select("#sample-metadata").append("li").text("Wfreq: " + data.metadata[0].wfreq)
+
+        var samp_values = data.samples[0].sample_values;
+        var slicedValues = samp_values.slice(0,10);
+
+        var otu_ids = data.samples[0].otu_ids;
+        var slicedIds = otu_ids.slice(0,10).map(String);
+        // var sortedValues = slicedIds.sort((firstNum, secondNum) => firstNum - secondNum);
+        // var reveseSort = sortedValues.reverse()
+        // var yAxisAsString = reveseSort.map(String);
+
+        var otu_labels = data.samples[0].otu_labels;
+        var sliced_labels = otu_labels.slice(0,10)
+
+        console.log(slicedValues);
+        console.log(slicedIds);
+
+        var data = [{
+            type: 'bar',
+            x: slicedValues,
+            y: slicedIds,
+            // y: `OTU ${yAxisAsString}`,
+            orientation: 'h',
+        }];
+
+        var layout = {
+            title: "Test",
+            xaxis: { title: "Sample Values"},
+            yaxis: { title: "OTU IDs",
+                     tickvals: slicedIds,
+                     automargin: true},
+            bargap: .5
+        
+        };
+
+        Plotly.newPlot('bar', data, layout);
+
+        
     
     });
 
