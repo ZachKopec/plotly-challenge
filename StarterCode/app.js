@@ -36,6 +36,7 @@ function init() {
         
         var data = importedData;
         console.log(data);
+        console.log(data.metadata[0].age);
         
         // Parse and filter data to get sample names
         var id_list = data.names
@@ -50,8 +51,13 @@ function init() {
                 return d;
             });
 
-        // Use first sample to build metadata and initial plots
-
+        var li1 = d3.select("#sample-metadata").append("li").text("ID: " + data.metadata[0].id)
+        var li2 = d3.select("#sample-metadata").append("li").text("Ethnicity: " + data.metadata[0].ethnicity)
+        var li3 = d3.select("#sample-metadata").append("li").text("Gender: " + data.metadata[0].gender)
+        var li4 = d3.select("#sample-metadata").append("li").text("Age: " + data.metadata[0].age)
+        var li5 = d3.select("#sample-metadata").append("li").text("Location: " + data.metadata[0].location)
+        var li6 = d3.select("#sample-metadata").append("li").text("Bbtype: " + data.metadata[0].bbtype)
+        var li7 = d3.select("#sample-metadata").append("li").text("Wfreq: " + data.metadata[0].wfreq)
     
     });
 
