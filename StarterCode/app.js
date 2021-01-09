@@ -62,16 +62,16 @@ function init() {
         var li7 = d3.select("#sample-metadata").append("li").text("Wfreq: " + data.metadata[0].wfreq)
 
         var samp_values = data.samples[0].sample_values;
-        var slicedValues = samp_values.slice(0,10);
-
         var otu_ids = data.samples[0].otu_ids;
+
+        var slicedValues = samp_values.slice(0,10);
         var slicedIds = otu_ids.slice(0,10).map(String);
         // var sortedValues = slicedIds.sort((firstNum, secondNum) => firstNum - secondNum);
         // var reveseSort = sortedValues.reverse()
         // var yAxisAsString = reveseSort.map(String);
 
         var otu_labels = data.samples[0].otu_labels;
-        var sliced_labels = otu_labels.slice(0,10)
+        var sliced_labels = otu_labels.slice(0,10);
 
         console.log(slicedValues);
         console.log(slicedIds);
@@ -96,6 +96,23 @@ function init() {
 
         Plotly.newPlot('bar', data, layout);
 
+        var trace2 = {
+            x: otu_ids,
+            y: samp_values,
+            mode: 'markers',
+            marker: { size: samp_values }
+        };
+
+        var data2 = [trace2];
+
+        var layout2 = {
+            title: "Test2",
+            showlegend: false,
+            height: 600,
+            width: 600
+        };
+
+        Plotly.newPlot("bubble", data2, layout2);
         
     
     });
