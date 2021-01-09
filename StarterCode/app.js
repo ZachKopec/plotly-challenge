@@ -175,6 +175,26 @@ function optionChanged(newSample){
                 };
         
                 Plotly.newPlot('bar', data, layout);
+
+                var trace2 = {
+                    x: otu_ids,
+                    y: samp_values,
+                    mode: 'markers',
+                    marker: { size: samp_values,
+                              color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
+                              opacity: [1, 1, 1, 1] }
+                };
+        
+                var data2 = [trace2];
+        
+                var layout2 = {
+                    title: "Test2",
+                    showlegend: false,
+                    height: 600,
+                    width: 1000
+                };
+        
+                Plotly.newPlot("bubble", data2, layout2);
         
     
             }
