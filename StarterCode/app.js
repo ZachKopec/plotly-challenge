@@ -63,9 +63,11 @@ function init() {
 
         var samp_values = data.samples[0].sample_values;
         var otu_ids = data.samples[0].otu_ids;
+        var otu_labels = data.samples[0].otu_labels;
 
         var slicedValues = samp_values.slice(0,10);
         var slicedIds = otu_ids.slice(0,10);
+        var slicedLabels = otu_labels.slice(0,10);
 
         var newIdArray = []
 
@@ -79,7 +81,8 @@ function init() {
             y: newIdArray,
             orientation: 'h',
             type: 'bar',
-            width: .5
+            width: .5,
+            text: slicedLabels
         };
 
         var data = [trace1];
@@ -98,9 +101,8 @@ function init() {
             y: samp_values,
             mode: 'markers',
             marker: { size: samp_values,
-                      color: otu_ids }
-                    //   color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
-                    //   opacity: [1, 1, 1, 1] }
+                      color: otu_ids },
+            text: slicedLabels
         };
 
         var data2 = [trace2];
@@ -147,9 +149,11 @@ function optionChanged(newSample){
             
                 var samp_values = data.samples[i].sample_values;
                 var otu_ids = data.samples[i].otu_ids;
+                var otu_labels = data.samples[i].otu_labels;
         
                 var slicedValues = samp_values.slice(0,10);
                 var slicedIds = otu_ids.slice(0,10);
+                var slicedLabels = otu_labels.slice(0,10);
         
                 var newIdArray = []
         
@@ -163,7 +167,8 @@ function optionChanged(newSample){
                     y: newIdArray,
                     orientation: 'h',
                     type: 'bar',
-                    width: .5
+                    width: .5,
+                    text: slicedLabels
                 };
         
                 var data = [trace1];
@@ -182,8 +187,8 @@ function optionChanged(newSample){
                     y: samp_values,
                     mode: 'markers',
                     marker: { size: samp_values,
-                              color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
-                              opacity: [1, 1, 1, 1] }
+                              color: otu_ids },
+                    text: slicedLabels
                 };
         
                 var data2 = [trace2];
