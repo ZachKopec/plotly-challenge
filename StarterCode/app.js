@@ -2,6 +2,7 @@
 This is not the only way to complete this assignment.
 Feel free to disregard and create your own code */
 
+
 // Define a function that will create metadata for given sample
 function buildMetadata(sample) {
 
@@ -31,17 +32,44 @@ function buildCharts(sample) {
 function init() {
 
     // Read json data
-
+    d3.json("samples.json").then((importedData) => {
+        
+        var data = importedData;
+        console.log(data);
+        
         // Parse and filter data to get sample names
+        var id_list = data.names
+        console.log(id_list);
+        console.log(id_list[0]);
+    
+        d3.select("#selDataset").selectAll("option")
+            .data(id_list)
+            .enter()
+            .append("option")
+            .text(function(d) {
+                return d;
+            });
 
-        // Add dropdown option for each sample
+        // Use first sample to build metadata and initial plots
 
-    // Use first sample to build metadata and initial plots
+    
+    });
+
+    
+
+        
+
+        
+
+    
 
 }
 
 function optionChanged(newSample){
 
+    // var dropdownMenu = d3.select("#selDataset");
+    // var dataset = dropdownMenu.property("value");
+    // var data = ids
     // Update metadata with newly selected sample
 
     // Update charts with newly selected sample
