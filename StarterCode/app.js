@@ -65,24 +65,25 @@ function init() {
         var otu_ids = data.samples[0].otu_ids;
 
         var slicedValues = samp_values.slice(0,10);
-        var slicedIds = otu_ids.slice(0,10).map(String);
+        var slicedIds = otu_ids.slice(0,10);
+        
         // var sortedValues = slicedIds.sort((firstNum, secondNum) => firstNum - secondNum);
         // var reveseSort = sortedValues.reverse()
         // var yAxisAsString = reveseSort.map(String);
-
-        var otu_labels = data.samples[0].otu_labels;
-        var sliced_labels = otu_labels.slice(0,10);
+        // var otu_labels = data.samples[0].otu_labels;
+        // var sliced_labels = otu_labels.slice(0,10);
 
         console.log(slicedValues);
         console.log(slicedIds);
 
-        var data = [{
-            type: 'bar',
+        var trace1 = {
             x: slicedValues,
             y: slicedIds,
-            // y: `OTU ${yAxisAsString}`,
             orientation: 'h',
-        }];
+            type: 'bar'
+        };
+
+        var data = [trace1];
 
         var layout = {
             title: "Test",
@@ -100,7 +101,9 @@ function init() {
             x: otu_ids,
             y: samp_values,
             mode: 'markers',
-            marker: { size: samp_values }
+            marker: { size: samp_values,
+                      color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
+                      opacity: [1, 1, 1, 1] }
         };
 
         var data2 = [trace2];
@@ -109,7 +112,7 @@ function init() {
             title: "Test2",
             showlegend: false,
             height: 600,
-            width: 600
+            width: 1000
         };
 
         Plotly.newPlot("bubble", data2, layout2);
@@ -117,22 +120,42 @@ function init() {
     
     });
 
-    
-
-        
-
-        
-
-    
-
 }
+
+d3.selectAll("#selDataset").on("change", optionChanged);
 
 function optionChanged(newSample){
 
-    // var dropdownMenu = d3.select("#selDataset");
-    // var dataset = dropdownMenu.property("value");
-    // var data = ids
+    d3.json("samples.json").then((importedData) => {
+        
+        var data = importedData;
+
+        var dropMenu = d3.select("#selDataset");
+        var newDataSet = dropMenu.property("value");
+        console.log(newDataSet);
+        var newData = [];
+    
+        for(var i = 0; i < data.names.length; i++){
+            if(newDataSet === data.names[i]) {
+                console.log("Dataset " + newDataSet + " found")
+                d3.select("#sample-metadata").selectAll("li")
+                    .remove();
+                d3.select("#sample-metadata").append("li").text("ID: " + data.metadata[i].id)
+                d3.select("#sample-metadata").append("li").text("Ethnicity: " + data.metadata[i].ethnicity)
+                d3.select("#sample-metadata").append("li").text("Gender: " + data.metadata[i].gender)
+                d3.select("#sample-metadata").append("li").text("Age: " + data.metadata[i].age)
+                d3.select("#sample-metadata").append("li").text("Location: " + data.metadata[i].location)
+                d3.select("#sample-metadata").append("li").text("Bbtype: " + data.metadata[i].bbtype)
+                d3.select("#sample-metadata").append("li").text("Wfreq: " + data.metadata[i].wfreq)
+            }
+        }
+
+    });
+
+    
+
     // Update metadata with newly selected sample
+
 
     // Update charts with newly selected sample
 
