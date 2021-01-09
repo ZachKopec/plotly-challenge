@@ -98,8 +98,9 @@ function init() {
             y: samp_values,
             mode: 'markers',
             marker: { size: samp_values,
-                      color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
-                      opacity: [1, 1, 1, 1] }
+                      color: otu_ids }
+                    //   color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
+                    //   opacity: [1, 1, 1, 1] }
         };
 
         var data2 = [trace2];
