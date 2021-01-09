@@ -1,33 +1,3 @@
-/* The following is an example on how you might structure your code.
-This is not the only way to complete this assignment.
-Feel free to disregard and create your own code */
-
-
-// Define a function that will create metadata for given sample
-function buildMetadata(sample) {
-
-    // Read the json data
-
-        // Parse and filter the data to get the sample's metadata
-
-        // Specify the location of the metadata and update it
-
-}
-
-// Define a function that will create charts for given sample
-function buildCharts(sample) {
-
-    // Read the json data
-
-        // Parse and filter the data to get the sample's OTU data
-        // Pay attention to what data is required for each chart
-
-        // Create bar chart in correct location
-
-        // Create bubble chart in correct location
-    
-}
-
 // Define function that will run on page load
 function init() {
 
@@ -53,13 +23,13 @@ function init() {
                 return d;
             });
 
-        var li1 = d3.select("#sample-metadata").append("li").text("ID: " + data.metadata[0].id)
-        var li2 = d3.select("#sample-metadata").append("li").text("Ethnicity: " + data.metadata[0].ethnicity)
-        var li3 = d3.select("#sample-metadata").append("li").text("Gender: " + data.metadata[0].gender)
-        var li4 = d3.select("#sample-metadata").append("li").text("Age: " + data.metadata[0].age)
-        var li5 = d3.select("#sample-metadata").append("li").text("Location: " + data.metadata[0].location)
-        var li6 = d3.select("#sample-metadata").append("li").text("Bbtype: " + data.metadata[0].bbtype)
-        var li7 = d3.select("#sample-metadata").append("li").text("Wfreq: " + data.metadata[0].wfreq)
+        d3.select("#sample-metadata").append("li").text("ID: " + data.metadata[0].id)
+        d3.select("#sample-metadata").append("li").text("Ethnicity: " + data.metadata[0].ethnicity)
+        d3.select("#sample-metadata").append("li").text("Gender: " + data.metadata[0].gender)
+        d3.select("#sample-metadata").append("li").text("Age: " + data.metadata[0].age)
+        d3.select("#sample-metadata").append("li").text("Location: " + data.metadata[0].location)
+        d3.select("#sample-metadata").append("li").text("Bbtype: " + data.metadata[0].bbtype)
+        d3.select("#sample-metadata").append("li").text("Wfreq: " + data.metadata[0].wfreq)
 
         var samp_values = data.samples[0].sample_values;
         var otu_ids = data.samples[0].otu_ids;
@@ -88,9 +58,9 @@ function init() {
         var data = [trace1];
 
         var layout = {
-            title: "Test",
-            xaxis: { title: "Sample Values" },
-            yaxis: { title: "OTU IDs"},
+            // title: "Test",
+            // xaxis: { title: "Sample Values" },
+            // yaxis: { title: "OTU IDs"},
             width: 1000
         };
 
@@ -108,7 +78,7 @@ function init() {
         var data2 = [trace2];
 
         var layout2 = {
-            title: "Test2",
+            // title: "Test2",
             showlegend: false,
             height: 600,
             width: 1000
@@ -131,8 +101,6 @@ function optionChanged(newSample){
 
         var dropMenu = d3.select("#selDataset");
         var newDataSet = dropMenu.property("value");
-        console.log(newDataSet);
-        var newData = [];
     
         for(var i = 0; i < data.names.length; i++){
             if(newDataSet === data.names[i]) {
@@ -174,9 +142,9 @@ function optionChanged(newSample){
                 var data = [trace1];
         
                 var layout = {
-                    title: "Test",
-                    xaxis: { title: "Sample Values" },
-                    yaxis: { title: "OTU IDs"},
+                    // title: "Test",
+                    // xaxis: { title: "Sample Values" },
+                    // yaxis: { title: "OTU IDs"},
                     width: 1000
                 };
         
@@ -194,7 +162,7 @@ function optionChanged(newSample){
                 var data2 = [trace2];
         
                 var layout2 = {
-                    title: "Test2",
+                    // title: "Test2",
                     showlegend: false,
                     height: 600,
                     width: 1000
@@ -207,13 +175,6 @@ function optionChanged(newSample){
         }
 
     });
-
-    
-
-    // Update metadata with newly selected sample
-
-
-    // Update charts with newly selected sample
 
 }
 
