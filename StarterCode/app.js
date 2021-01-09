@@ -66,15 +66,6 @@ function init() {
 
         var slicedValues = samp_values.slice(0,10);
         var slicedIds = otu_ids.slice(0,10);
-        
-        // var sortedValues = slicedIds.sort((firstNum, secondNum) => firstNum - secondNum);
-        // var reveseSort = sortedValues.reverse()
-        // var yAxisAsString = reveseSort.map(String);
-        // var otu_labels = data.samples[0].otu_labels;
-        // var sliced_labels = otu_labels.slice(0,10);
-
-        console.log(slicedValues);
-        console.log(slicedIds);
 
         var newIdArray = []
 
@@ -82,10 +73,6 @@ function init() {
             var nextId = "OTU " + slicedIds[i].toString()
             newIdArray.push(nextId)
         }
-
-        revIdArr = newIdArray.reverse();
-
-        console.log(newIdArray)
 
         var trace1 = {
             x: slicedValues,
@@ -156,6 +143,40 @@ function optionChanged(newSample){
                 d3.select("#sample-metadata").append("li").text("Location: " + data.metadata[i].location)
                 d3.select("#sample-metadata").append("li").text("Bbtype: " + data.metadata[i].bbtype)
                 d3.select("#sample-metadata").append("li").text("Wfreq: " + data.metadata[i].wfreq)
+            
+                var samp_values = data.samples[i].sample_values;
+                var otu_ids = data.samples[i].otu_ids;
+        
+                var slicedValues = samp_values.slice(0,10);
+                var slicedIds = otu_ids.slice(0,10);
+        
+                var newIdArray = []
+        
+                for(var j = 0; j < slicedIds.length; j++){
+                    var nextId = "OTU " + slicedIds[j].toString()
+                    newIdArray.push(nextId)
+                }
+        
+                var trace1 = {
+                    x: slicedValues,
+                    y: newIdArray,
+                    orientation: 'h',
+                    type: 'bar',
+                    width: .5
+                };
+        
+                var data = [trace1];
+        
+                var layout = {
+                    title: "Test",
+                    xaxis: { title: "Sample Values" },
+                    yaxis: { title: "OTU IDs"},
+                    width: 1000
+                };
+        
+                Plotly.newPlot('bar', data, layout);
+        
+    
             }
         }
 
