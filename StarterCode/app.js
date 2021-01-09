@@ -76,23 +76,32 @@ function init() {
         console.log(slicedValues);
         console.log(slicedIds);
 
+        var newIdArray = []
+
+        for(var i = 0; i < slicedIds.length; i++){
+            var nextId = "OTU " + slicedIds[i].toString()
+            newIdArray.push(nextId)
+        }
+
+        revIdArr = newIdArray.reverse();
+
+        console.log(newIdArray)
+
         var trace1 = {
             x: slicedValues,
-            y: slicedIds,
+            y: newIdArray,
             orientation: 'h',
-            type: 'bar'
+            type: 'bar',
+            width: .5
         };
 
         var data = [trace1];
 
         var layout = {
             title: "Test",
-            xaxis: { title: "Sample Values"},
-            yaxis: { title: "OTU IDs",
-                     tickvals: slicedIds,
-                     automargin: true},
-            bargap: .5
-        
+            xaxis: { title: "Sample Values" },
+            yaxis: { title: "OTU IDs"},
+            width: 1000
         };
 
         Plotly.newPlot('bar', data, layout);
